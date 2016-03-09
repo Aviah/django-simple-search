@@ -5,7 +5,7 @@ A full text search app without installing any other tool. It uses the databases 
 
 There are probably better solutions for scaled search, but if you need a basic search, up and running, without too much hustle and configs, this app is an easy solution.
 
-*Note: The app was tested on **MySQL** . For other databases please review and adjust the sql statments on app_settings.py, migrations/0001_initial.py*
+*Note: The app was tested on MySQL. For other databases please review and adjust the sql statments on app_settings.py, migrations/0001_initial.py*
 
 
 ## Installation
