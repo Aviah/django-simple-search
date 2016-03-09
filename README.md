@@ -5,12 +5,12 @@ A full text search app without installing any other tool. It uses the databases 
 
 There are probably better solutions for scaled search, but if you need a basic search, up and running, without too much hustle and configs, this app is an easy solution.
 
-*Note: The app was tested on **MySQL**. For other databases please review and adjust the sql statments on app_settings.py, migrations/0001_initial.py*
+*Note: The app was tested on **MySQL** . For other databases please review and adjust the sql statments on app_settings.py, migrations/0001_initial.py*
 
 
 ## Installation
 
-1. Add the app to your django project. The app directory name should be "search".
+1. Add the app, the "search" directory. to your django project (the app directory name should be "search").
 2. Install sqlparse (for migrations):
 
 		$ sudo pip install sqlparse
@@ -58,7 +58,7 @@ The search query SQL. The default works for MySQL, adjust if required for anothe
 
 Entries are saved automatically when you save an object (with a post_save signal).
 
-Just add to every model that should be indexed a 'SearchConfig' class, with the fields to be indexed, as follows:
+Just add to every model that you want to index a 'SearchConfig' class, with the fields to be indexed, as follows:
 
 
 	class Product(models.Model):
@@ -74,7 +74,7 @@ Just add to every model that should be indexed a 'SearchConfig' class, with the 
 		notes =  models.CharField(max_length=200)
 		
 		
-In this example, the search item name, the text that wil show on the search results, is 'product_name'. The search index will also index th 'category' and 'description' fields. The 'notes' fields will not be indexed.
+In this example, the search item name, which it the text that will show on the search results, is 'product_name'. The search index will also index the 'category' and 'description' fields. The 'notes' fields will not be indexed.
 
 If you want to index only the item name, use empty list for the seach fields:
 
@@ -94,13 +94,13 @@ If you want to index only the item name, use empty list for the seach fields:
 Searching is very simple:
 
 	from search.models import SearchItems
+	...
 	items = SearchItems.search('foobar')
 	
-This returns a list with results of the found items, and you can use "items" in your views and templates.
+This returns a list with search results for 'foobar'.Use "items" in your views and templates.
 
-'items' is a list of dictionaries of all the objects found by the search query. Note that 'items' has **mixed objects**, since it pulls objects from  different models. 
-
-
+The results list, 'items', is a list of dictionaries of all found objects.    
+Note that 'items' has **mixed objects**, since it pulls objects from  different models.    
 The 'items' results will look like:
 
 	[{'name':'product1','object':<django model object>},
@@ -109,15 +109,15 @@ The 'items' results will look like:
 	]
 	
 
-So, in the above example, the search results returned "product" object and "contact" object in the same results set, if they both found by the search query (say product "foobar" and contact "foobar Smith").
+Note that ins this example, results include both a "product" object and "contact" object. This can happen if the search indexed matched both obejcts, say product "foobar Phone" and contact "foobar Smith".
 
 
-To get a set of the search results **objects**, similar to a queryset but with mixed objects:
+To get a set of the search results **objects**, similar to a queryset:
 
 
 	search_results_objects = [x[object] for x in items]
 	
-You can use the "object" attribute in your code and templates, just make sure you use attributes and methods that are common to all the objects.
+You can use the "object" attribute in your code and templates, just make sure you use only the attributes and methods that are common to all objects.
 
 
 A search results template may look like:
@@ -138,7 +138,9 @@ The search index is automatically updated when you save an object, so every new 
 
 However, if there is already data in the models, before you installed the search app, you can load it in bulk to the search index.    
 
-The search index updates with a post_save signal, so looping through all objects and saving them will create new search index entries for each. A script to load all objects from a model will look like this:
+The search index updates with a post_save signal, so looping through all objects and saving them will create the search index entries for existing data.
+
+A script to load all objects from a model will look like this:
 
 		import os
 		# use the same settings as in your manage.py file
@@ -154,7 +156,7 @@ The search index updates with a post_save signal, so looping through all objects
 		for product in products:
 			product.save()
 			
-Run a similar script for every model you need to load to the search index, make sure to add SearchConfig to the model beforehand.
+Run a similar script for every model you need to load to the search index, after adding **SearchConfig** to the model.
 
 *Note: Such script will trigger the model's validation for each save. You may have to ignore this validation temporarily, e.g. when the validation does not allow to save record from past dates.*
 		
