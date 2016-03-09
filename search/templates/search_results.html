@@ -1,0 +1,17 @@
+<h1> Search Results for: {{ search_query }} </h1>
+
+{% if object_list %}
+
+    {% for item in object_list %}
+        
+        <p> <a href="{{ item.object.get_absolute_url }}"> {{ item.name }} </a> </p>    
+    
+    {% endfor %}
+    
+    
+{% else %}
+        
+        <p> No matches found </p>
+
+{% endif %}
+
