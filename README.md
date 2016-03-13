@@ -4,7 +4,7 @@
 **A full text search app without installing any other tool,  uses the databases native full text search**
 
 There are probably better solutions for scaled search, but if you need a basic search, up and running, without too much hustle and configs, this app is an easy solution.    
-To see how the search is implemented in a full website: [django-website](https://github.com/Aviah/django-website)
+To see how the search works in a full website: [django-website](https://github.com/Aviah/django-website)
 
 *Note: The app was tested on MySQL. For other databases please review and adjust the sql statments on app_settings.py, migrations/0001_initial.py*
 
@@ -12,8 +12,8 @@ To see how the search is implemented in a full website: [django-website](https:/
 [Install](#install)    
 [Settings](#settings)    
 [Saving an Entry to the Search Index](#saving-an-entry-to-the-search-index)    
-[Running a Search & Get Search Results](running-a-search-get-search-results)    
-[Loading Exsiting Data to the Search Index](loading-exsiting-data-to-the-search-index)    
+[Run a Search & Get Search Results](#run-a-search-get-search-results)    
+[Load Exsiting Data to the Search Index](#load-exsiting-data-to-the-search-index)    
 [User Specific Search](#user-specific-search)
 
 ## Install
@@ -97,7 +97,7 @@ If you want to index only the item name, use empty list for the seach fields:
 		pub_date = models.DateTimeField('date published)
 		
 		
-## Running a Search & Get Search Results
+## Run a Search & Get Search Results
 
 Searching is very simple:
 
@@ -140,7 +140,7 @@ Since all objects should have a get_absolute_url method, this code will work for
 See the example view and template in the app.
 
 
-## Loading Exsiting Data to the Search Index
+## Load Exsiting Data to the Search Index
 
 The search index is automatically updated when you save an object, so every new entry, or updated entry, will be saved to the search index.
 
