@@ -11,7 +11,7 @@ To see how the search works in a full website: [django-website](https://github.c
 
 [Install](#install)    
 [Settings](#settings)    
-[Saving an Entry to the Search Index](#saving-an-entry-to-the-search-index)    
+[Save an Entry to the Search Index](#save-an-entry-to-the-search-index)    
 [Run a Search & Get Search Results](#run-a-search--get-search-results)    
 [Load Exsiting Data to the Search Index](#load-exsiting-data-to-the-search-index)    
 [User Specific Search](#user-specific-search)
@@ -62,7 +62,7 @@ The sql LIMIT to the search query.
 **SELECT**    
 The search query SQL. The default works for MySQL, adjust if required for another database
 
-## Saving an Entry to the Search Index
+## Save an Entry to the Search Index
 
 Entries are saved automatically when you save an object (with a post_save signal).
 
