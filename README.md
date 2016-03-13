@@ -12,7 +12,7 @@ To see how the search works in a full website: [django-website](https://github.c
 [Install](#install)    
 [Settings](#settings)    
 [Saving an Entry to the Search Index](#saving-an-entry-to-the-search-index)    
-[Run a Search & Get Search Results](#run-a-search-get-search-results)    
+[Run a Search & Get Search Results](#run-a-search--get-search-results)    
 [Load Exsiting Data to the Search Index](#load-exsiting-data-to-the-search-index)    
 [User Specific Search](#user-specific-search)
 
@@ -66,7 +66,7 @@ The search query SQL. The default works for MySQL, adjust if required for anothe
 
 Entries are saved automatically when you save an object (with a post_save signal).
 
-Just add to every model that you want to index a 'SearchConfig' class, with the fields to be indexed, as follows:
+Just add to every model that you want to index a `SearchConfig` class, with the fields to be indexed, as follows:
 
 
 	class Product(models.Model):
@@ -164,7 +164,7 @@ A script to load all objects from a model will look like this:
 		for product in products:
 			product.save()
 			
-Run a similar script for every model you need to load to the search index, after adding **SearchConfig** to the model.
+Run a similar script for every model you need to load to the search index, after adding `SearchConfig` to the model.
 
 *Note: Such script will trigger the model's validation for each save. You may have to ignore this validation temporarily, e.g. when the validation does not allow to save record from past dates.*
 		
