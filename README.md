@@ -1,27 +1,35 @@
 
-# Dajngo Simple Search
+# Django Simple Search
 
-A full text search app without installing any other tool. It uses the databases native full text search.
+**A full text search app without installing any other tool,  uses the databases native full text search**
 
-There are probably better solutions for scaled search, but if you need a basic search, up and running, without too much hustle and configs, this app is an easy solution.
+There are probably better solutions for scaled search, but if you need a basic search, up and running, without too much hustle and configs, this app is an easy solution.    
+To see how the search is implemented in a full website: [django-website](https://github.com/Aviah/django-website)
 
 *Note: The app was tested on MySQL. For other databases please review and adjust the sql statments on app_settings.py, migrations/0001_initial.py*
 
 
-## Installation
+[Install](#install)    
+[Settings](#settings)    
+[Saving an Entry to the Search Index](#saving-an-entry-to-the-search-index)    
+[Running a Search & Get Search Results](running-a-search-get-search-results)    
+[Loading Exsiting Data to the Search Index](loading-exsiting-data-to-the-search-index)    
+[User Specific Search](#user-specific-search)
+
+## Install
 
 1. Add the app, the "search" directory. to your django project (the app directory name should be "search").
 2. Install sqlparse (for migrations):
 
 		$ sudo pip install sqlparse
 		
-3. Add the app to the INSTALLED_APPS
+3. Add the app to the `INSTALLED_APPS`
 4. Edit the initial migration file:
 
 		$ nano search/migrations/0001_initial.py
 		mig_sql = MySQL_5_6 # for MySQL versions prior to 5.7
 		mig_sql = MySQL_5_7 # for MySQL versions from 5.7
-5. If you are not using MySQL, edit and adjust the SQL in 0001_initial.py migration, and app_settings.py
+5. If you are not using MySQL, edit and adjust the SQL in `0001_initial.py` migration, and `app_settings.py`
 6. Run migrations:
 
 		$ ./manage.py migrate
@@ -29,7 +37,7 @@ There are probably better solutions for scaled search, but if you need a basic s
 		
 ## Settings
 
-If you want to change the search defaults, add SEARCH_SETTINGS dictionary to your main project settings.py file. These are the search settings and defaults:
+If you want to change the search defaults, add `SEARCH_SETTINGS` dictionary to your main project `settings.py` file. These are the search settings and defaults:
 
 	SEARCH_SETTINGS = {
 		'MIN_LENGTH_SEARCH_QUERIES': 4,
@@ -89,7 +97,7 @@ If you want to index only the item name, use empty list for the seach fields:
 		pub_date = models.DateTimeField('date published)
 		
 		
-## Running Search
+## Running a Search & Get Search Results
 
 Searching is very simple:
 
@@ -174,8 +182,7 @@ If you need to limit the search only to the user's records, you will have to add
 2. The SearchResultsManager: add a user criteria to the queryset and the search method
 3. Add user_id field to the SQL in  migrations/0001_initial.py and app_settings.py.
 
-For a complete example of user-based search results see the [Example Project](https://github.com/aviah/example_project/master/readme.md)
-
+See how user-based search works in a full website: [django-website](https://github.com/Aviah/django-website)
 
 
 		
